@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Prototipo responsive del ERP Sistema Integra" />
+    <title>Sistema Integra | ERP de transporte y encomiendas</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2216%22 fill=%22%232563eb%22/><text x=%2232%22 y=%2239%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2222%22 font-weight=%22700%22 fill=%22white%22>SI</text></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar" aria-label="Navegación principal">
+        <a class="brand" href="#/inicio" aria-label="Ir al inicio">
+          <span class="brand-mark">SI</span>
+          <span><strong>Sistema Integra</strong><small>ERP de transporte</small></span>
+        </a>
+        <nav id="navigation"></nav>
+        <div class="sidebar-footer">
+          <div class="user-avatar">AG</div>
+          <div><strong>Ana García</strong><small>Administradora</small></div>
+          <button class="icon-button" aria-label="Cerrar sesión">↗</button>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <button class="menu-button" id="menuButton" aria-label="Abrir menú">☰</button>
+          <div class="breadcrumbs" id="breadcrumbs"></div>
+          <div class="topbar-actions">
+            <button class="icon-button notification" aria-label="Notificaciones">♢<span></span></button>
+            <div class="status-pill"><i></i> Sistema operativo</div>
+          </div>
+        </header>
+        <section class="page" id="app" aria-live="polite"></section>
+      </main>
+    </div>
+    <div class="overlay" id="overlay"></div>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
