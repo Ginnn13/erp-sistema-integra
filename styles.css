@@ -104,7 +104,7 @@ tbody tr { transition: .15s; }
 tbody tr:hover { background: #fafcff; }
 .cell-title { font-weight: 700; }
 .cell-sub { display: block; color: var(--muted); font-size: 10px; margin-top: 3px; }
-.badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 8px; border-radius: 999px; color: #2f7768; background: var(--teal-soft); font-size: 10px; font-weight: 700; }
+.badge { display: inline-flex; flex-shrink: 0; align-items: center; gap: 6px; padding: 5px 8px; border-radius: 999px; color: #2f7768; background: var(--teal-soft); font-size: 10px; font-weight: 700; }
 .badge.blue { color: #3b64b7; background: var(--blue-soft); }
 .badge.amber { color: #996119; background: #fff4dc; }
 .badge.red { color: #a94153; background: #ffecef; }
@@ -202,7 +202,8 @@ tbody tr:hover { background: #fafcff; }
   .topbar-actions .notification { display: none; }
   .breadcrumbs { max-width: 210px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .module-hero { padding: 20px; }
-  .card-header { align-items: flex-start; }
+  .card-header { display: grid; grid-template-columns: minmax(0, 1fr); align-items: flex-start; }
+  .card-header .badge { justify-self: start; }
   .seat-map { grid-template-columns: repeat(5, 36px); gap: 7px; }
   .seat { width: 36px; height: 36px; }
 }

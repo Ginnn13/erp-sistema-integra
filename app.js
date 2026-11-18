@@ -188,7 +188,27 @@ function trackingView() {
   return `<div class="grid cols-3"><article class="card span-2"><div class="card-header"><div><h2>Rastrea tu encomienda</h2><p>Consulta segura sin exponer datos personales</p></div></div><div class="card-body"><div style="display:flex;gap:10px"><input class="input" value="ENC-10482" />${button('Consultar')}</div><div class="route-line" style="margin-top:24px">${[['Lima','Recibido'],['Ica','En ruta'],['Camaná','Próximo'],['Arequipa','Destino']].map((s,i)=>`<div class="stop"><i style="${i>1?'background:#ccd4e2;box-shadow:0 0 0 2px #ccd4e2':''}"></i><strong>${s[0]}</strong><small>${s[1]}</small></div>`).join("")}</div></div></article><article class="card"><div class="card-header"><h2>Entrega estimada</h2></div><div class="card-body"><div class="metric-value">20 nov</div><p class="lead">Entre 14:00 y 18:00</p>${badge('Riesgo bajo')}<hr style="border:0;border-top:1px solid var(--line);margin:20px 0"><p class="lead">Último evento</p><strong>Salida de centro de distribución</strong><p class="lead">Ica · Hoy, 10:42</p></div></article></div>`;
 }
 
-function analyticsView() { return renderHome().replace('Buenos días, Ana','Tablero analítico').replace('Centro de operaciones','Módulo I · Inteligencia operativa').replace('Nuevo registro','Exportar reporte'); }
+function analyticsView() {
+  return `<div class="grid cols-4">
+      ${metric("Encomiendas procesadas", "1,284", '<span class="up">+8.2%</span> frente al mes anterior')}
+      ${metric("Entregas a tiempo", "94.6%", '<span class="up">+2.1%</span> esta semana', "teal", "✓")}
+      ${metric("Tiempo medio", "18.4 h", "−1.6 h frente al periodo anterior", "violet", "◷")}
+      ${metric("Incidencias", "3.2%", "41 casos en el periodo", "amber", "!")}
+    </div>
+    <div class="grid cols-3" style="margin-top:18px">
+      <article class="card span-2"><div class="card-header"><div><h2>Entregas por día</h2><p>Rendimiento de los últimos siete días</p></div>${badge("Actualizado", "blue")}</div><div class="chart">${[54,72,66,85,79,94,88].map((h,i)=>`<div class="bar" style="--h:${h}%" data-label="${['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'][i]}"></div>`).join("")}</div><div style="height:26px"></div></article>
+      <article class="card"><div class="card-header"><div><h2>Cumplimiento por ruta</h2><p>Entregas dentro del plazo</p></div></div><div class="card-body timeline">
+        ${[['LI','Lima - Ica','97.8%'],['LA','Lima - Arequipa','94.1%'],['TC','Trujillo - Chiclayo','91.6%']].map((x,i)=>`<div class="timeline-item"><span class="timeline-dot">${x[0]}</span><div><h3>${x[1]}</h3><p>${i+1}° en rendimiento</p></div>${badge(x[2], i===2?'amber':'')}</div>`).join("")}
+      </div></article>
+    </div>
+    <article class="card" style="margin-top:18px"><div class="card-header"><div><h2>Detalle de encomiendas</h2><p>Resultados según los filtros activos</p></div>${button("Exportar PDF")}${button("Exportar XLSX", "teal")}</div>
+      ${table(["Código","Ruta","Fecha de entrega","Tiempo","Resultado"],[
+        ['<span class="cell-title">ENC-10482</span>','Lima → Arequipa','20 nov 2026','17.2 h',badge('A tiempo')],
+        ['<span class="cell-title">ENC-10479</span>','Cusco → Puno','18 nov 2026','11.8 h',badge('A tiempo')],
+        ['<span class="cell-title">ENC-10463</span>','Lima → Ica','17 nov 2026','7.4 h',badge('Con demora','amber')]
+      ])}
+    </article>`;
+}
 
 function eventsView() {
   return `<div class="grid cols-3"><article class="card span-2"><div class="card-header"><div><h2>Historial de ENC-10482</h2><p>Registro inmutable y auditable</p></div>${button('Nuevo evento')}</div><div class="card-body timeline">
